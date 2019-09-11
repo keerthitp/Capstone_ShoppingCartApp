@@ -1,0 +1,83 @@
+[
+    {
+        "id": 2,
+        "name": "Gucci",
+        "price": 27.99,
+        "category": "Perfume",
+        "domesticOrImported": "imported",
+        "quantity": 1
+    },
+    {
+        "id": 1,
+        "name": "Gucci2",
+        "price": 18.99,
+        "category": "Perfume",
+        "domesticOrImported": "domestic",
+        "quantity": 1
+    },
+    {
+        "id": 3,
+        "name": "headache pills",
+        "price": 9.75,
+        "category": "Medical",
+        "domesticOrImported": "domestic",
+        "quantity": 1
+    },
+    {
+        "id": 5,
+        "name": "choco",
+        "price": 11.25,
+        "category": "Food",
+        "domesticOrImported": "imported",
+        "quantity": 1
+    }
+]
+
+
+
+insert into product
+select 2, "Perfume", "imported", "Gucci", 27.99, 10
+union
+select 1, "Perfume", "domestic", "Gucci2", 18.99, 10
+union
+select 3, "medical", "domestic", "headache pills", 9.75,2
+union
+select 5, "Food", "imported", "choco", 11.85, 20
+
+
+------------------------------------------------------------
+
+insert into product
+select 1, "Food", "imported", "choco", 10.00, 20
+union
+select 2, "Perfume", "imported", "Gucci", 47.50, 10
+
+[
+    {
+        "id": 1,
+        "name": "choco",
+        "price": 10.0,
+        "category": "Food",
+        "domesticOrImported": "imported",
+        "quantity": 1
+    },
+    {
+        "id": 2,
+        "name": "Gucci",
+        "price": 47.5,
+        "category": "Perfume",
+        "domesticOrImported": "imported",
+        "quantity": 1
+    }
+]
+
+------------------------------------------------------------
+
+insert into product
+select 1, "Books", "domestic", "Book 2", 12.49, 20
+union
+select 2, "Music", "domestic", "song 1", 14.99, 10
+union
+select 3, "Food", "domestic", "Choco", 0.85, 5
+
+

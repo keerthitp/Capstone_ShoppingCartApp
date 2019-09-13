@@ -1,13 +1,14 @@
 package com.company.ShoppingCartServer.DTO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Transaction {
 
 
     private List<Product> productList;
-    private Double salesTax;
-    private Double Total;
+    private BigDecimal salesTax;
+    private BigDecimal Total;
 
     public List<Product> getProductList() {
         return productList;
@@ -17,19 +18,20 @@ public class Transaction {
         this.productList = productList;
     }
 
-    public Double getSalesTax() {
+    public BigDecimal getSalesTax() {
         return salesTax;
     }
 
-    public void setSalesTax(Double salesTax) {
+    public void setSalesTax(BigDecimal salesTax) {
         this.salesTax = salesTax;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return Total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         Total = total;
     }
 }
+

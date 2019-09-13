@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:5000")
 @RestController
 @RequestMapping(value = "/product")
 public class ProductController {
@@ -43,9 +44,9 @@ public class ProductController {
         productService.deleteProductFromDatabase(id);
     }
 
-    @PutMapping(value="/{id}")
-    public Product updateProductInDatabase(@Valid @RequestBody Product product, @PathVariable Integer id){
-        return  productService.updateProductInDatabase(product, id);
+    @PutMapping
+    public Product updateProductInDatabase(@Valid @RequestBody Product product){
+        return  productService.updateProductInDatabase(product);
     }
 
     @PatchMapping(value="/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE)

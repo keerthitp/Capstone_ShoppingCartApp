@@ -81,3 +81,29 @@ union
 select 3, "Food", "domestic", "Choco", 0.85, 5
 
 
+[
+    {
+        "id": 1,
+        "name": "Book 2",
+        "price": 12.49,
+        "category": "Books",
+        "domesticOrImported": "domestic",
+        "quantity": 1
+    },
+    {
+        "id": 2,
+        "name": "song 1",
+        "price": 14.99,
+        "category": "Music",
+        "domesticOrImported": "domestic",
+        "quantity": 1
+    },
+    {
+        "id": 3,
+        "name": "Choco",
+        "price": 0.85,
+        "category": "Food",
+        "domesticOrImported": "domestic",
+        "quantity": 1
+    }
+]

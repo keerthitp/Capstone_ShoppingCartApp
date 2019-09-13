@@ -32,6 +32,26 @@ public class Product {
     @NotNull
     private Integer quantity;
 
+    private Integer quantityToBuy = 0; // this will be zero for the product added to the Inventory
+
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Integer getQuantityToBuy() {
+        return quantityToBuy;
+    }
+
+    public void setQuantityToBuy(Integer quantityToBuy) {
+        this.quantityToBuy = quantityToBuy;
+    }
+
     public Integer getQuantity() {
         return quantity;
     }

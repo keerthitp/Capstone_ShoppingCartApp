@@ -45,12 +45,12 @@ public class ProductService {
         }
     }
 
-    public Product updateProductInDatabase( Product product, Integer id){
+    public Product updateProductInDatabase( Product product){
 
-        if(id != product.getId())
-            throw new IllegalArgumentException("Id "+ id+ " does not match with Product Id: "+ product.getId());
+//        if(id != product.getId())
+//            throw new IllegalArgumentException("Id "+ id+ " does not match with Product Id: "+ product.getId());
 
-        Product productToBeUpdated = getProductByIdFromDatabase(id);
+        Product productToBeUpdated = getProductByIdFromDatabase(product.getId());
 
 
 

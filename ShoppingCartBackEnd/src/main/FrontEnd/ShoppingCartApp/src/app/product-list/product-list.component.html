@@ -1,0 +1,79 @@
+<!-- 
+<div *ngFor=" let product of products">
+    <app-product-detail [product]="product" ></app-product-detail>
+    
+</div> -->
+
+<!-- 
+<div *ngFor=" let product of products">
+    <app-product-detail [product]="product" ></app-product-detail>
+    
+</div> -->
+
+
+
+<div class="container">
+
+        <div class="row">
+                <div class ="col-md-12">
+                    <br><br>
+                        <p class="float-left text-center">Search by </p>
+                        <input  class="navbar-brand float-left" (change)="onNameChange()" [(ngModel)]="searchbyName" placeholder="By name">
+                        <input  class="navbar-brand float-left" (change) = "onCategoryChange()" [(ngModel)]="searchByCategory" placeholder="By Category">
+                </div>
+        </div>    
+
+        <br><br>
+
+        <div class="row">
+            <div class ="col-md-12">
+                <h4>Available Products</h4>
+    
+                <div class="row">   
+                    <div class ="col-md-3 mb-3 mr-4" *ngFor="let product of (products | filterProducts :searchbyName : searchByCategory) ">
+                       
+                            <app-product-detail [product]="product" ></app-product-detail>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        
+
+<!-- 
+<div class="container">
+        <div class="row">
+                <div class ="col-md-12">
+                    <br><br>
+                        <p class="float-left text-center">Search by </p>
+                        <input class="navbar-brand float-left" [(ngModel)]="searchbyName" placeholder="By name">
+                        <input class="navbar-brand float-left" [(ngModel)]="searchByCategory" placeholder="By Category">
+                </div>
+        </div>    
+        <br><br>
+
+        <div class="row">
+            <div class ="col-md-12">
+                
+                <h4>Available Products</h4>
+    
+                <!-- <div class="row" *ngIf="searchbyName.length == 0 && searchByCategory.length == 0 ">
+                        <div class ="col-md-3 mb-3 mr-4" *ngFor="let product of products | " >
+                                <app-product-detail [product]="product" ></app-product-detail>
+                        </div>
+                </div>  
+                 -->
+                <!-- <div class="row" *ngIf="searchByName.length> 0|| searchByCategory.length > 0 ">
+                    <div class ="col-md-3 mb-3 mr-4" *ngFor="let product of products" >
+                            <app-product-detail [product]="product" ></app-product-detail>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>
+ -->
+
+        
+     -->

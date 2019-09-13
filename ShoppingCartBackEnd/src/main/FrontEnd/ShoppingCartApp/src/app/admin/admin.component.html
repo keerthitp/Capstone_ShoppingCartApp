@@ -1,0 +1,51 @@
+<!-- <form [formGroup]="addForm" (ngSubmit) = "onSubmit()">
+ <div class="form-group">
+    <input formControlName="name" type = "text" class="form-control" placeholder="name">
+    <input formControlName="number" type = "number" class="form-control" placeholder="name">
+    <button class="btn btn-success float-right" type="submit">Submit</button>
+    </div>
+</form>
+ -->
+
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="form-group col-6 mt-1">
+            <h5>Add Product to the Database</h5>
+            <input formControlName="name" type="text" class="form-control mt-2 " placeholder="Name">
+            <input formControlName="price" type="number" class="form-control mt-2" placeholder="Price">
+            <input formControlName="quantity" type="number" class="form-control mt-2" placeholder="Quantity">
+            <input formControlName="category" type="text" class="form-control mt-2" placeholder="Category">
+            <input formControlName="domesticOrImported" type="text" class="form-control mt-2" placeholder="Domestic Or Imported">
+            <input formControlName="imageUrl" type="text" class="form-control mt-2" placeholder="Image URL">            
+            <button class="btn btn-success float-left mt-2" type="submit">Submit</button>
+
+        </div>
+    </form>
+
+    <br>
+
+    <div class="form-group col-6 mt-5">
+      <div class = "row">
+        <div class = "col-4" >Enter Product ID to edit</div>
+        <input class="col-2" [(ngModel)]="editId">
+        <button class = "btn btn-success col-2" (click)="onEdit(editId)">Edit</button>
+      </div>
+    </div>
+
+    <!-- Listing the Products that are there in the database -->
+<!-- 
+    <ul class="list-group col-6 mt-5">
+        <li class="list-group-item" *ngFor="let product of products">{{product.name}}</li>
+        
+    </ul> -->
+
+<table class="table table-hover">
+    <tr class="row col-md-12" *ngFor="let product of products; let i=index">
+        <td class="col">{{product.name}}</td>
+        <td class="col"><button class="btn-info"  (click)="onEdit(product.id)">Edit</button></td>
+        <td class="col"><button class="btn-danger" (click)= "onDelete(product.id)">Delete</button></td>
+   
+    </tr>
+</table>
+   <!--  <div class="row" *ngFor="let product of products">
+        <div class="col-6 float-left mt-5">{{product.name}}</div>
+    </div> -->

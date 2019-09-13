@@ -1,0 +1,60 @@
+
+<div *ngIf = "purchase==false">
+<table class="table" *ngIf="productsInCart.length>0" >
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Quantity</td>
+            <td>Unit Price</td>
+            <td>Total Price</td>
+        </tr>
+    </thead>
+    <tr *ngFor="let product of productsInCart; let i = index">
+        <td>{{product.name}}</td>
+        <td> 
+            <button (click) = "decreaseQuantityOnTheProductInShoppingCart(i)">-</button>
+            {{product.quantityToBuy}}
+            <button (click) = "increaseQuantityOnTheProductInShoppingCart(i)">+</button>
+        </td>
+        <td>{{product.price | currency }}</td>
+        <td>{{product.price * product.quantityToBuy | currency}}</td>
+
+    </tr>
+</table>
+
+<p *ngIf="productsInCart.length==0">Cart is empty!</p>
+<button (click)="onPurchase()" *ngIf = "productsInCart.length>0">Purchase</button>
+</div>
+
+
+
+
+<div *ngIf="purchase==true && invoiceRecieved == true"> <!-- Invoice received -->
+<h1>Invoice</h1>
+    <table class="table"  >
+            <thead>
+                <tr>
+                    <td>Name</td>
+                   <!--  <td>Quantity</td>
+                    <td>Unit Price</td> -->
+                    <td>Product Price + tax</td>
+                </tr>
+            </thead>
+            <tr *ngFor="let product of invoice.productList; let i = index">
+                <td>{{product.quantityToBuy}} {{product.name}}</td>
+                
+                <td>{{product.price | currency }}</td>
+         
+        
+            </tr>
+        </table>
+
+        <h4>Sales Tax: {{invoice.salesTax | currency}} </h4>
+        <h3>Grand total: {{invoice.total | currency}}</h3>
+
+        
+        
+
+
+
+</div>

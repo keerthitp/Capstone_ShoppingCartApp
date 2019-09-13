@@ -41,7 +41,11 @@ public class Product {
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+        if(imageUrl.length()==0){
+            this.imageUrl="https://images.pexels.com/photos/1342251/pexels-photo-1342251.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+
+        } else
+            this.imageUrl = imageUrl;
     }
 
     public Integer getQuantityToBuy() {

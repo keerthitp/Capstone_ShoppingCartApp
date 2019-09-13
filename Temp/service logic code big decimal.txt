@@ -2,6 +2,7 @@ package com.company.ShoppingCartServer.Service;
 
 import com.company.ShoppingCartServer.DTO.Product;
 import com.company.ShoppingCartServer.DTO.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.math.BigDecimal;
@@ -12,6 +13,9 @@ import java.util.function.BiFunction;
 
 @Controller
 public class PurchaseService {
+
+    @Autowired
+    ProductService productService;
 
     public Transaction createReceiptForTheTransaction(List<Product> productList){
 
@@ -35,7 +39,8 @@ public class PurchaseService {
 
 
         for(Product product: productList){
-            if(exemptProductCategory.contains(product.getCategory()))
+            //if(exemptProductCategory.contains(product.getCategory()))
+            if(exemptProductCategory.stream().anyMatch(product.getCategory()::equalsIgnoreCase))
                 salesTax = BigDecimal.ZERO;
             else
                 salesTax = BigDecimal.valueOf(0.10);
@@ -53,11 +58,11 @@ public class PurchaseService {
 
             BigDecimal tempSalesTax =  BigDecimal.valueOf(product.getPrice())
                     .multiply(salesTax)
-                    .multiply(BigDecimal.valueOf(product.getQuantity()));
+                    .multiply(BigDecimal.valueOf(product.getQuantityToBuy()));
             System.out.println("SalesTaxFor the product: " + tempSalesTax);
 
             BigDecimal tempImportedDutyTax = BigDecimal.valueOf(product.getPrice() )
-                    .multiply(BigDecimal.valueOf(product.getQuantity()))
+                    .multiply(BigDecimal.valueOf(product.getQuantityToBuy()))
                     .multiply(importedDutyTax);
             System.out.println("imported tax for the product: " + tempImportedDutyTax);
 
@@ -85,10 +90,12 @@ public class PurchaseService {
             productToAdd.setId(counter++);
             productToAdd.setName(product.getName());
             productToAdd.setPrice(Double.parseDouble(
-                    (BigDecimal.valueOf(product.getQuantity())
+                    (BigDecimal.valueOf(product.getQuantityToBuy())
                     .multiply(BigDecimal.valueOf(product.getPrice())))
                     .add(totalTaxForTheCurrentProduct).setScale(2,BigDecimal.ROUND_UP).toString()));
-
+            productToAdd.setQuantityToBuy(product.getQuantityToBuy());
+//            productToAdd.setDomesticOrImported(product.getDomesticOrImported());
+//            productToAdd.setQuantity(product.getQuantity());
 
             transactionProductList.add(productToAdd);
 

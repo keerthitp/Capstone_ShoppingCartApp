@@ -182,7 +182,7 @@ public class ProductControllerTests {
 
     @Test
     public void shouldUpdateProductWithPatch() throws Exception{
-        // Changing the price of a product from 14.99 to 13.99 in product 2
+        // Changing the price of a product from 14.99 to 25.2 in product 2
 
 
 

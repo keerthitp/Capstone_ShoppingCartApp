@@ -12,7 +12,7 @@ export class ShoppingCartService {
   shoppingCartProducts:Product[]=[];
   productToAddToTheShoppingCart:Product;
 
-  serverURL:String = "http://localhost:8081"; // 
+  serverURL:String = "http://localhost:8080"; // 
 
   // The below code is used to share total number of cart items with navbar - so that it can display the number of items in cart
   private messageSource = new BehaviorSubject(0);
@@ -54,13 +54,16 @@ export class ShoppingCartService {
          console.log("productInCart: "+ productInCart.name+"-"+ productInCart.id);
          console.log("product: "+ product.name+"-"+product.id);
           found =1;
+          
+          if ((productInCart.quantityToBuy + product.quantityToBuy)<= product.quantity){
           productInCart.quantityToBuy+=product.quantityToBuy;
           this.calculateCartItems();
           return;
+          }
        }
       }
     )
-    if (found == 0){
+    if (found == 0 && product.quantityToBuy <= product.quantity){
       this.shoppingCartProducts.push(product);
     this.calculateCartItems();
     }

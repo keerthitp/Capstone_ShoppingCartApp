@@ -26,26 +26,27 @@ public class ProductService {
     ProductRepository productRepo;
 
 
-    public Product addProductToDatabase(Product product){
+    public Product addProductToDatabase(Product product) {
 
         return productRepo.save(product);
 
     }
-    public List<Product> getAllProductsFromDatabase(){
+
+    public List<Product> getAllProductsFromDatabase() {
         return productRepo.findAll();
     }
 
 
-    public void deleteProductFromDatabase( Integer id){
+    public void deleteProductFromDatabase(Integer id) {
 
         try {
             productRepo.deleteById(id);
-        }catch (Exception e){
-            throw new IllegalArgumentException("Product id "+ id+ " does not exist in the database");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Product id " + id + " does not exist in the database");
         }
     }
 
-    public Product updateProductInDatabase( Product product){
+    public Product updateProductInDatabase(Product product) {
 
 //        if(id != product.getId())
 //            throw new IllegalArgumentException("Id "+ id+ " does not match with Product Id: "+ product.getId());
@@ -53,17 +54,16 @@ public class ProductService {
         Product productToBeUpdated = getProductByIdFromDatabase(product.getId());
 
 
-
         return productRepo.save(product);
     }
 
-    public ResponseEntity<?> updatePartialProductInDatabase(Map<String,Object> partialProduct, Integer productId){
+    public ResponseEntity<?> updatePartialProductInDatabase(Map<String, Object> partialProduct, Integer productId) {
 
         Product product = getProductByIdFromDatabase(productId);
 
-        partialProduct.forEach((k,v)->{
+        partialProduct.forEach((k, v) -> {
 
-            switch(k){
+            switch (k) {
                 case "id":
                     throw new IllegalArgumentException("ID cannot be updated by User - it is system generated");
 
@@ -90,26 +90,37 @@ public class ProductService {
 
         //productRepo.save(partialProduct,productId);
 
-         return ResponseEntity.ok("resource updated");
+        return ResponseEntity.ok("resource updated");
 
 
     }
 
-    public Product getProductByIdFromDatabase(Integer id){
+    public Product getProductByIdFromDatabase(Integer id) {
 
-            Product product = productRepo.findById(id).orElse(null);
+        Product product = productRepo.findById(id).orElse(null);
 
-            if (product == null)
-                throw new IllegalArgumentException("Invalid id passed");
-            else
-                return product;
+        if (product == null)
+            throw new IllegalArgumentException("Invalid id passed");
+        else
+            return product;
 
 
+    }
+
+    public void updateInventory(List<Product> cartProducts) {
+
+        List<Product> productList = productRepo.findAll();
+
+        for (Product cartProduct : cartProducts) {
+
+            Product product = productRepo.getOne(cartProduct.getId());
+
+            if (product.getQuantity() > cartProduct.getQuantityToBuy())
+                product.setQuantity(product.getQuantity() - cartProduct.getQuantityToBuy());
 
 
         }
 
 
-
-
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ProductService } from '../product.service';
 import {Product} from '../product';
@@ -11,7 +11,7 @@ import {CartDetailComponent} from './cart-detail/cart-detail.component'
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   productsInCart:Product[] = [];
   invoiceGetSub: Subscription;
@@ -94,6 +94,9 @@ export class ShoppingCartComponent implements OnInit {
     })
   }
 
-
+ngOnDestroy(){
+  if(this.invoiceGetSub)
+    this.invoiceGetSub.unsubscribe();
+}
 
 }

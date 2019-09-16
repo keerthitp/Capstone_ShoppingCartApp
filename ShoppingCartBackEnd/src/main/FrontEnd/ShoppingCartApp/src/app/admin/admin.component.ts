@@ -141,11 +141,19 @@ getProductsSub:Subscription;
     if(this.addProductSub)
       this.addProductSub.unsubscribe();
     
-      if(this.getProductsSub)
-        this.getProductsSub.unsubscribe();
+    if(this.getProductsSub)
+     this.getProductsSub.unsubscribe();
 
-        if(this.putSub)
-        this.getProductsSub.unsubscribe();
+    if(this.putSub)
+      this.getProductsSub.unsubscribe();
+
+    if(this.deleteProductSub)
+       this.deleteProductSub.unsubscribe();
+    
+    if(this.uodatePartialProductSub)
+      this.uodatePartialProductSub.unsubscribe();
+    
+    
     }
 
     onEdit(id:number){

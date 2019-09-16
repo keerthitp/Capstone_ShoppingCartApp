@@ -1,9 +1,0 @@
-JsonIgnoreProperties - hibernateLazyInitializer
-
-hibernate
-jpa
-
-https://thoughts-on-jav
-
-https://stackoverflow.com/questions/6330852/round-off-decimal-value-up-to-
-nearest-0-05-valuea.org/entity-mappings-introduction-jpa-fetchtypes/

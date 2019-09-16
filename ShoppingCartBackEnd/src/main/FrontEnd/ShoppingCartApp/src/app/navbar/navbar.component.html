@@ -7,24 +7,12 @@
     <a class="navbar-brand" routerLink="/">{{ title }}</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/products" routerLinkActive="link-active">Products</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/cart" routerLinkActive="link-active">
-     <!--  <a href="../../assets/icons/shoppingCart.ico"> -->
-<!--       <i class="fas fa-shopping-cart"></i> 
- -->
-<!--    <i ng-src="../../assets/images/icons/shoppingCart.ico"></i>
- -->     <!-- 
- <svg>
-  <use xlink:href="../../assets/icons/symbol-defs.svg#icon-images"></use>
-</svg> -->
-<!-- <svg-icon icon="icon-images" class="icon"></svg-icon> -->
-
-<!-- <img class="ico" src="../../assets/icons/shoppingCart.ico"> -->
-
-
-    Cart(<p style="display:inline-block">
+      <img src="../../assets/icons/cart.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Cart(<p style="display:inline-block">
             {{total}}
           </p>)</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/admin" routerLinkActive="link-active">Admin</a>&nbsp;&nbsp;&nbsp;
-    <!-- <button class="btn" (click)="onToggleAuthenticated()">Logged In: {{ adminService.authenticated }}</button> -->
+    <button class="btn navbar-brand" (click)="onToggleAuthenticated()">Logged In: {{ adminService.authenticated }}</button>
 
   </nav>
   

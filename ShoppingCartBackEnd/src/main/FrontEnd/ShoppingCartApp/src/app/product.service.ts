@@ -10,7 +10,7 @@ export class ProductService {
 
 //products: Product[] = []; // Array to store all the products from the database
 
-serverURL:String = "http://localhost:8081"; // 
+serverURL:String = "http://localhost:8080"; // 
 
   constructor(private http: HttpClient) { }
 

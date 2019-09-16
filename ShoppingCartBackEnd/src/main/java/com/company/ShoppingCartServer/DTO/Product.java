@@ -2,11 +2,13 @@ package com.company.ShoppingCartServer.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +20,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
+    @NotEmpty(message = "Name cannot be empty, add atleast a length of 3 characters")
+    @Length(min = 3, max = 255)
     private String name;
 
     @NotNull
@@ -94,6 +97,9 @@ public class Product {
     }
 
     public void setCategory(String category) {
+        if(!Arrays.asList("food", "books", "medical", "music", "luxury items", "clothes").contains(category.toLowerCase()))
+            throw new IllegalArgumentException("Expected category: "+  "food"+ " books" + " medical" +  " music " + " luxury items " + " clothes");
+
         this.category = category;
     }
 

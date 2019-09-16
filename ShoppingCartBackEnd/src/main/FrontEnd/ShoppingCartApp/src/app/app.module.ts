@@ -19,6 +19,7 @@ import { FilterProductsPipe } from './filter-products.pipe';
 import { CartDetailComponent } from './shopping-cart/cart-detail/cart-detail.component';
 import { SvgIconComponent } from './svg-icon.component';
 import { FrontPageComponent } from './front-page/front-page.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -41,7 +42,10 @@ import { FrontPageComponent } from './front-page/front-page.component';
     SvgIconComponent,
     
     
-    FrontPageComponent
+    FrontPageComponent,
+    
+    
+    FooterComponent
   ],
   imports: [
     BrowserModule,

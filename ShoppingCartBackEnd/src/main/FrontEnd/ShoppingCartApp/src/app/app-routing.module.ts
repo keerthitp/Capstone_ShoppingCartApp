@@ -6,12 +6,13 @@ import {AdminComponent} from './admin/admin.component'
 import {ProductListComponent} from './product-list/product-list.component'
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component'
 import {FrontPageComponent} from './front-page/front-page.component'
+import { AdminGuard } from './admin.guard';
 
 
 const routes: Routes = [
   {path:'products', component: ProductListComponent},
   {path:'cart', component: ShoppingCartComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   {path: '', component: FrontPageComponent},/* redirectTo:'products', pathMatch:'full'}, */
   {path: '**', component: PageNotFoundComponent}
 

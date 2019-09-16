@@ -14,8 +14,8 @@ import java.util.List;
 @Component
 public class PurchaseService {
 
-//    @Autowired
-//    ProductService productService;
+   @Autowired
+   ProductService productService;
 
     public Transaction createReceiptForTheTransaction(List<Product> productList){
 
@@ -132,7 +132,8 @@ public class PurchaseService {
 
         //        transaction.setSalesTax(new Double(finalSalesTax));
 //        transaction.setTotal(new Double(finalTotal));
-
+        // update inventory
+        productService.updateInventory(productList);
         return transaction;
 
     }

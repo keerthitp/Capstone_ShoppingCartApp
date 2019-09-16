@@ -13,7 +13,7 @@
             <div class="col">
 
           
-            <button type="button" class="btn btn-success" [disabled]="quantityToBuy>product.quantity" (click)="onAddProductToCart(product)">Add to cart</button>
+            <button type="button" class="btn btn-success" [class.disabled]="quantityToBuy>product.quantity" (click)="onAddProductToCart(product)">Add to cart</button>
             </div>
           </div>
         </div>

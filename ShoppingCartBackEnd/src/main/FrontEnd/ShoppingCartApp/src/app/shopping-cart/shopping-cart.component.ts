@@ -41,7 +41,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   increaseQuantityOnTheProductInShoppingCart(index: number){
-    if(this.productsInCart[index].quantityToBuy>0 && this.productsInCart[index].quantityToBuy <= this.productsInCart[index].quantity)
+    if(this.productsInCart[index].quantityToBuy>0 && this.productsInCart[index].quantityToBuy < this.productsInCart[index].quantity)
        this.productsInCart[index].quantityToBuy++;
 
        

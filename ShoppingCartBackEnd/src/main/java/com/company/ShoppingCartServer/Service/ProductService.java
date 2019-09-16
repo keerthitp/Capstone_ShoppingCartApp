@@ -115,8 +115,12 @@ public class ProductService {
 
             Product product = productRepo.getOne(cartProduct.getId());
 
-            if (product.getQuantity() > cartProduct.getQuantityToBuy())
+            if (product.getQuantity() >= cartProduct.getQuantityToBuy())
                 product.setQuantity(product.getQuantity() - cartProduct.getQuantityToBuy());
+
+            productRepo.save(product);
+            System.out.println("In Inventory");
+            System.out.println(product);
 
 
         }

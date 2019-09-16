@@ -5,13 +5,14 @@ import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component'
 import {AdminComponent} from './admin/admin.component'
 import {ProductListComponent} from './product-list/product-list.component'
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component'
+import {FrontPageComponent} from './front-page/front-page.component'
 
 
 const routes: Routes = [
   {path:'products', component: ProductListComponent},
   {path:'cart', component: ShoppingCartComponent},
   {path: 'admin', component: AdminComponent},
-  {path: '', redirectTo:'products', pathMatch:'full'},
+  {path: '', component: FrontPageComponent},/* redirectTo:'products', pathMatch:'full'}, */
   {path: '**', component: PageNotFoundComponent}
 
 ];

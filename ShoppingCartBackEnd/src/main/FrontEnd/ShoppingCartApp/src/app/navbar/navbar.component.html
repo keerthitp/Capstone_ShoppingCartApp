@@ -1,4 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
+<!--     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+ -->
+
+ <nav class="navbar navbar-dark bg-dark">
+
     <a class="navbar-brand" routerLink="/">{{ title }}</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/products" routerLinkActive="link-active">Products</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/cart" routerLinkActive="link-active">
@@ -12,7 +17,12 @@
 </svg> -->
 <!-- <svg-icon icon="icon-images" class="icon"></svg-icon> -->
 
-    Cart</a>&nbsp;&nbsp;&nbsp;
+<!-- <img class="ico" src="../../assets/icons/shoppingCart.ico"> -->
+
+
+    Cart(<p style="display:inline-block">
+            {{total}}
+          </p>)</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/admin" routerLinkActive="link-active">Admin</a>&nbsp;&nbsp;&nbsp;
     <!-- <button class="btn" (click)="onToggleAuthenticated()">Logged In: {{ adminService.authenticated }}</button> -->
 

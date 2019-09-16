@@ -23,7 +23,7 @@ export class ProductDetailComponent implements OnInit {
   onAddProductToCart(product){
 
     if(this.quantityToBuy > 0){
-      this.productToAddToTheShoppingCart = new Product(product.name,product.price,product.quantity,product.category,product.domesticOrImported,this.quantityToBuy);
+      this.productToAddToTheShoppingCart = new Product(product.name,product.price,product.quantity,product.category,product.domesticOrImported,this.quantityToBuy, product.imageUrl);
       this.productToAddToTheShoppingCart.id = product.id;
       this.shoppingCartService.addProductToShoppingCart(this.productToAddToTheShoppingCart);
     }

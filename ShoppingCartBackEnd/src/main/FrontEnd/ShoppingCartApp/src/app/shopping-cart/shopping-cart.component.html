@@ -1,60 +1,89 @@
 
-<div *ngIf = "purchase==false">
-<table class="table" *ngIf="productsInCart.length>0" >
-    <thead>
-        <tr>
-            <td>Name</td>
-            <td>Quantity</td>
-            <td>Unit Price</td>
-            <td>Total Price</td>
-        </tr>
-    </thead>
-    <tr *ngFor="let product of productsInCart; let i = index">
-        <td>{{product.name}}</td>
-        <td> 
-            <button (click) = "decreaseQuantityOnTheProductInShoppingCart(i)">-</button>
-            {{product.quantityToBuy}}
-            <button (click) = "increaseQuantityOnTheProductInShoppingCart(i)">+</button>
-        </td>
-        <td>{{product.price | currency }}</td>
-        <td>{{product.price * product.quantityToBuy | currency}}</td>
 
-    </tr>
-</table>
+ <div class="container" *ngIf="productsInCart.length>0 && purchase==false">
+     
+        <div class ="col-md-3 mb-3 mr-4" *ngFor="let product of productsInCart; let i = index ">
+              <!--   <app-cart-detail [product]="product" [i] = "i" ></app-cart-detail> -->
 
-<p *ngIf="productsInCart.length==0">Cart is empty!</p>
-<button (click)="onPurchase()" *ngIf = "productsInCart.length>0">Purchase</button>
+            
+                <div class="card mb-3" style="max-width: 540px; border-style: none">
+                    <div class="row no-gutters">
+                          <div class="col-md-4">
+                            <img [src]="product.imageUrl" class="card-img" alt="..." >
+                          </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: chocolate">{{product.name}}</h5>
+                                <p class="card-text">Price per item: {{product.price | currency}}</p>
+                                <h4 class="card-text" style="color:red"> {{product.price * product.quantityToBuy | currency}}</h4>
+                                <p class="card-text"><small class="text-muted">
+                                  <button class="btn btn-warning" (click) = "decreaseQuantityOnTheProductInShoppingCart(i)">-</button>
+                                    {{product.quantityToBuy}}
+                                  <button class="btn btn-success" (click) = "increaseQuantityOnTheProductInShoppingCart(i)">+</button>
+                              </small></p>
+                              <a class="card-text" style="color: blue" (click)= onRemoveProductFromCart(i)> Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+               
+        
+        </div>
+        <h3 class="text-left" style="color:darkblue; ">Total:    {{total | currency}}</h3>
+        <button class = " btn btn-info" (click)="onPurchase()" *ngIf = "productsInCart.length>0">Purchase</button>
+ </div>   
+ <!--  -->
+
+
+    
+
+  
+
+
+<div *ngIf="productsInCart.length==0 " class="empty">
+  <img src="https://images.pexels.com/photos/296916/pexels-photo-296916.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+  <h1>Cart is empty</h1>
 </div>
+
+
+
 
 
 
 
 <div *ngIf="purchase==true && invoiceRecieved == true"> <!-- Transaction received -->
-<h1>Invoice</h1>
-    <table class="table"  >
-            <thead>
-                <tr>
-                    <td>Name</td>
-                   <!--  <td>Quantity</td>
-                    <td>Unit Price</td> -->
-                    <td>Product Price + tax</td>
-                </tr>
-            </thead>
-            <tr *ngFor="let product of invoice.productList; let i = index">
-                <td>{{product.quantityToBuy}} {{product.name}}</td>
-                
-                <td>{{product.price | currency }}</td>
-         
+<h1 style="color: lightseagreen; margin-left: 10%; margin-right: 10%">Order Details</h1>
+  <table class="table"  style="margin-left: 10%; margin-right: 10%">
         
-            </tr>
-        </table>
+          <thead style="background-color: teal; color: white">
+              <tr style=" font-weight:bold">
+                  <td>Name</td>
+                 <!--  <td>Quantity</td>
+                  <td>Unit Price</td> -->
+                  <td>Product Price + tax</td>
+              </tr>
+          </thead>
+          <tr *ngFor="let product of invoice.productList; let i = index">
+              <td>{{product.quantityToBuy}} {{product.name}}</td>
+              
+              <td>{{product.price | currency }}</td>
+       
+      
+          </tr>
 
-        <h4>Sales Tax: {{invoice.salesTax | currency}} </h4>
-        <h3>Grand total: {{invoice.total | currency}}</h3>
+          <tr>
+                <h4 style="color: navy">Sales Tax: {{invoice.salesTax | currency}} </h4>
+                <h3 style="color: red">Grand total: {{invoice.total | currency}}</h3>
+          
+          </tr>
+      </table>
 
-        
-        
+      
+      
+      
 
 
 
 </div>
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {Invoice} from './invoice';
 
@@ -14,13 +14,38 @@ export class ShoppingCartService {
 
   serverURL:String = "http://localhost:8081"; // 
 
-  constructor(private http:HttpClient) { 
+  // The below code is used to share total number of cart items with navbar - so that it can display the number of items in cart
+  private messageSource = new BehaviorSubject(0);
+  currentMessage = this.messageSource.asObservable();
+
+  
+  changeMessage(message: number) {
+    this.messageSource.next(message)
+  }
+
+
+  
+   calculateCartItems(){
+    let total = 0
+    
+    if(this.getAllShoppingCartProducts().length == 0)
+      this.changeMessage(0);
+
+    for(let i =0; i< this.getAllShoppingCartProducts().length; i++){
+        total+= this.shoppingCartProducts[i].quantityToBuy;
+    console.log("Total: "+ total);
+    this.changeMessage(total);
+    }
+  }
+   constructor(private http:HttpClient) { 
 
   }
 
   addProductToShoppingCart(product:Product){
 
+  
     let found =0;
+  
     //check if this product is already in the cart
     this.shoppingCartProducts.map(
       productInCart=> {
@@ -30,15 +55,23 @@ export class ShoppingCartService {
          console.log("product: "+ product.name+"-"+product.id);
           found =1;
           productInCart.quantityToBuy+=product.quantityToBuy;
+          this.calculateCartItems();
           return;
        }
       }
     )
-    if (found == 0)
+    if (found == 0){
       this.shoppingCartProducts.push(product);
+    this.calculateCartItems();
+    }
       /* comment */
 
 
+  }
+
+  removeProductFromCart(index:number){
+      this.shoppingCartProducts.splice(index,1);
+      this.calculateCartItems();
   }
 
   getAllShoppingCartProducts(){
@@ -58,6 +91,34 @@ export class ShoppingCartService {
 
   clearShoppingCart(){
     this.shoppingCartProducts=[];
+    this.calculateCartItems();
   }
+ 
+  decreaseQuantityOnTheProductInShoppingCart(index:number){
+
+
+
+    if(this.shoppingCartProducts[index].quantityToBuy>0)
+       this.shoppingCartProducts[index].quantityToBuy--;
+
+       if(this.shoppingCartProducts[index].quantityToBuy == 0)
+        this.removeProductFromCart(index);
+      
+        this.getAllShoppingCartProducts();
+      // this.calculateTotal();
+        this.calculateCartItems();
+  }
+
+  increaseQuantityOnTheProductInShoppingCart(index: number){
+    if(this.shoppingCartProducts[index].quantityToBuy>0 && this.shoppingCartProducts[index].quantityToBuy <= this.shoppingCartProducts[index].quantity)
+       this.shoppingCartProducts[index].quantityToBuy++;
+
+       
+
+       this.getAllShoppingCartProducts();
+   // this.calculateTotal();
+      this.calculateCartItems();
+  }
+ 
   
 }

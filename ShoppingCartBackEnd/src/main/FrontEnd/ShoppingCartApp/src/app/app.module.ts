@@ -16,7 +16,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { FilterProductsPipe } from './filter-products.pipe';
-import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { CartDetailComponent } from './shopping-cart/cart-detail/cart-detail.component';
+import { SvgIconComponent } from './svg-icon.component';
+
 
 
 
@@ -33,7 +35,8 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
     
     FilterProductsPipe,
     
-    CartDetailComponent
+    
+    SvgIconComponent
   ],
   imports: [
     BrowserModule,

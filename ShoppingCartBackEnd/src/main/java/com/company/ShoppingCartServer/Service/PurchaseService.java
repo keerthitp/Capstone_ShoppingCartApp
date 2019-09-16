@@ -3,19 +3,19 @@ package com.company.ShoppingCartServer.Service;
 import com.company.ShoppingCartServer.DTO.Product;
 import com.company.ShoppingCartServer.DTO.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
-@Controller
+@Component
 public class PurchaseService {
 
-    @Autowired
-    ProductService productService;
+//    @Autowired
+//    ProductService productService;
 
     public Transaction createReceiptForTheTransaction(List<Product> productList){
 
@@ -31,6 +31,7 @@ public class PurchaseService {
         int counter =1;
 
         DecimalFormat twoDForm = new DecimalFormat("0.00");
+
 
         exemptProductCategory.add("Books");
         exemptProductCategory.add("Food");
@@ -59,12 +60,12 @@ public class PurchaseService {
             BigDecimal tempSalesTax =  BigDecimal.valueOf(product.getPrice())
                     .multiply(salesTax)
                     .multiply(BigDecimal.valueOf(product.getQuantityToBuy()));
-            System.out.println("SalesTaxFor the product: " + tempSalesTax);
+            //System.out.println("SalesTaxFor the product: " + tempSalesTax);
 
             BigDecimal tempImportedDutyTax = BigDecimal.valueOf(product.getPrice() )
                     .multiply(BigDecimal.valueOf(product.getQuantityToBuy()))
                     .multiply(importedDutyTax);
-            System.out.println("imported tax for the product: " + tempImportedDutyTax);
+           // System.out.println("imported tax for the product: " + tempImportedDutyTax);
 
             BigDecimal bigDecimal20 = BigDecimal.valueOf(20);
 
@@ -78,14 +79,14 @@ public class PurchaseService {
                             .divide(bigDecimal20).toString())));
 */
 
-            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-            System.out.println("totalTaxForTheCurrentProduct: " + totalTaxForTheCurrentProduct);
-            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+//            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+//            System.out.println("totalTaxForTheCurrentProduct: " + totalTaxForTheCurrentProduct);
+//            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
 
 
             salesTaxByProductList.add((totalTaxForTheCurrentProduct.setScale(2,BigDecimal.ROUND_UP)));
-            System.out.println("Tax: "+ (totalTaxForTheCurrentProduct).setScale(2,BigDecimal.ROUND_UP));
+      //      System.out.println("Tax: "+ (totalTaxForTheCurrentProduct).setScale(2,BigDecimal.ROUND_UP));
 
             productToAdd.setId(counter++);
             productToAdd.setName(product.getName());
@@ -124,9 +125,9 @@ public class PurchaseService {
         transaction.setTotal(finalTotal);
 
 
-        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-        System.out.println("totalTaxForTheCurrentProduct: " + finalSalesTax);
-        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+//        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+//        System.out.println("totalTaxForTheCurrentProduct: " + finalSalesTax);
+//        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
 
         //        transaction.setSalesTax(new Double(finalSalesTax));

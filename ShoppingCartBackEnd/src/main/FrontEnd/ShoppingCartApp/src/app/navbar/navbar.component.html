@@ -1,7 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" routerLink="/">{{ title }}</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/products" routerLinkActive="link-active">Products</a>&nbsp;&nbsp;&nbsp;
-    <a class="navbar-brand" routerLink="/cart" routerLinkActive="link-active">Cart</a>&nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand" routerLink="/cart" routerLinkActive="link-active">
+     <!--  <a href="../../assets/icons/shoppingCart.ico"> -->
+<!--       <i class="fas fa-shopping-cart"></i> 
+ -->
+<!--    <i ng-src="../../assets/images/icons/shoppingCart.ico"></i>
+ -->     <!-- 
+ <svg>
+  <use xlink:href="../../assets/icons/symbol-defs.svg#icon-images"></use>
+</svg> -->
+<!-- <svg-icon icon="icon-images" class="icon"></svg-icon> -->
+
+    Cart</a>&nbsp;&nbsp;&nbsp;
     <a class="navbar-brand" routerLink="/admin" routerLinkActive="link-active">Admin</a>&nbsp;&nbsp;&nbsp;
     <!-- <button class="btn" (click)="onToggleAuthenticated()">Logged In: {{ adminService.authenticated }}</button> -->
 

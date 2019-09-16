@@ -72,6 +72,7 @@ public class ProductService {
                     break;
                 case "price":
                     product.setPrice(Double.parseDouble(v.toString()));
+
                     break;
                 case "category":
                     product.setCategory(v.toString());

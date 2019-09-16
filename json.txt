@@ -74,11 +74,11 @@ select 2, "Perfume", "imported", "Gucci", 47.50, 10
 ------------------------------------------------------------
 
 insert into product
-select 1, "Books", "domestic", "Book 2", 12.49, 20
+select 1, "Books", "domestic", "Book 2", 12.49, 20,0
 union
-select 2, "Music", "domestic", "song 1", 14.99, 10
+select 2, "Music", "domestic", "song 1", 14.99, 10,0
 union
-select 3, "Food", "domestic", "Choco", 0.85, 5
+select 3, "Food", "domestic", "Choco", 0.85, 5,0
 
 
 [

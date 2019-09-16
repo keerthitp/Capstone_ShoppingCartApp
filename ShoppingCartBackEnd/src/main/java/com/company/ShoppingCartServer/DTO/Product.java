@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -49,7 +50,7 @@ public class Product {
     }
 
     public Integer getQuantityToBuy() {
-        return quantityToBuy;
+        return this.quantityToBuy;
     }
 
     public void setQuantityToBuy(Integer quantityToBuy) {
@@ -57,7 +58,7 @@ public class Product {
     }
 
     public Integer getQuantity() {
-        return quantity;
+        return this.quantity;
     }
 
     public void setQuantity(Integer quantity) {
@@ -65,7 +66,7 @@ public class Product {
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -73,7 +74,7 @@ public class Product {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -81,7 +82,7 @@ public class Product {
     }
 
     public Double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(Double price) {
@@ -89,7 +90,7 @@ public class Product {
     }
 
     public String getCategory() {
-        return category;
+        return this.category;
     }
 
     public void setCategory(String category) {
@@ -97,10 +98,44 @@ public class Product {
     }
 
     public String getDomesticOrImported() {
-        return domesticOrImported;
+        return this.domesticOrImported;
     }
 
     public void setDomesticOrImported(String domesticOrImported) {
         this.domesticOrImported = domesticOrImported;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", domesticOrImported='" + domesticOrImported + '\'' +
+                ", quantity=" + quantity +
+                ", quantityToBuy=" + quantityToBuy +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id.equals(product.id) &&
+                name.equals(product.name) &&
+                price.equals(product.price) &&
+                category.equals(product.category) &&
+                domesticOrImported.equals(product.domesticOrImported) &&
+                quantity.equals(product.quantity) &&
+                quantityToBuy.equals(product.quantityToBuy) &&
+                imageUrl.equals(product.imageUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, category, domesticOrImported, quantity, quantityToBuy, imageUrl);
     }
 }

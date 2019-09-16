@@ -35,6 +35,8 @@ public class ProductController {
     @PostMapping
     public Product addProduct(@Valid @RequestBody Product product){
 
+        System.out.println("*****************************************************");
+        System.out.print("From Controller: " + product.getName());
         return productService.addProductToDatabase(product);
     }
 
